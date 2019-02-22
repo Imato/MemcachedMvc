@@ -1,0 +1,18 @@
+version: '3.4'
+
+services:
+  
+  memcached:
+    image: memcached:alpine
+    ports:
+      - 11211:11211
+
+  memcachedmvc:
+    image: ${DOCKER_REGISTRY-}memcachedmvc
+    build:
+      context: .
+      dockerfile: MemcachedMvc/Dockerfile
+    depends_on:
+      - memcached
+
+      
